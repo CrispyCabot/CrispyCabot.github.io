@@ -1,0 +1,18 @@
+.sec1 {
+	margin: 12px;
+	background-color: #fff;
+}
+
+iframe {
+	height: 500px;
+	width: 1000px;
+}
+
+.sec1 h1 {
+	padding: 4px;
+	color: #AA0;
+}
+
+.sec1 iframe {
+	padding: 4px;
+}
