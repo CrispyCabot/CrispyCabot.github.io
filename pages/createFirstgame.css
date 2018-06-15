@@ -5,7 +5,6 @@
 
 .group1:hover, .group2:hover {
 	border: 5px solid #888;
-	margin: 7px;
 }
 
 .sec1 p, .sec1 ul {
