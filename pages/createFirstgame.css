@@ -1,0 +1,50 @@
+.group1, .group2 {
+	background-color: #fff;
+	margin: 12px;
+}
+
+.group1:hover, .group2:hover {
+	border: 5px solid #888;
+	margin: 7px;
+}
+
+.sec1 p, .sec1 ul {
+	font-size: 16px;
+	font-family: "Slabo 27px", serif;
+	color: #555;
+}
+
+.sec1 p:hover, .sec1 ul:hover {
+	color: #000;
+}
+
+.sec1 h1:hover {
+	color: #A29FFF;
+}
+
+.sec1 h1 {
+	font-family: "Titillium Web", sans-serif;
+	padding: 12px;
+	text-decoration: underline;
+	color: #807DFF;
+}
+
+.sec1 p {
+	padding: 12px;
+}
+
+.sec1 ul {
+	padding: 12px 44px;
+}
+
+.sec1 ul li ul {
+	padding: 8px 24px;
+}
+
+a {
+	color: #566DFA;
+}
+
+a:hover {
+	color: #B7C1FF;
+}

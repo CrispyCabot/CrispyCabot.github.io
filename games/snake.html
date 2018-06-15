@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Snake</title>
+		<link href="../nav.css" rel="stylesheet" type="text/css">
+		<link href="snake.css" rel="stylesheet" type="text/css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="#">Guides</a>
+					<ul>
+						<li><a href="../pages/creating-your-first-game.html">Making A Game</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Games</a>
+					<ul>
+						<li><a href="../games/snake.html">Snake</a></li>
+						<li><a href="../games/galaga/galaga.html">Galaga</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Apps</a>
+					<ul>
+						<li><a href="https://play.google.com/store/apps/details?id=xyz.crispycabot.hold_the_touch">Hold The Touch</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<br/>
+		<br/>
+		<br/>
+		<script type="application/processing">
+			int frontX = 20;
+int frontY = 60;
+int bx = int(random(1,49))*20;
+int by = int(random(3,38))*20;
+int snakeLength = 5;
+String direction = "Right";
+Button play;
+ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
+boolean playing = false;
+
+void setup() {
+  size(1000,760);
+  noStroke();
+  frameRate(20);
+  background(0);
+  int[] playColor1 = {100, 100, 100};
+  int[] playColor2 = {255, 255, 255};
+  play = new Button(width/2-50, height/2+10, 100, 40, "Play", playColor1, playColor2);
+}
+
+void draw() {
+  if (playing) {
+    //Top bar
+    fill(255,0,0);
+    rect(0,0, width, 60);
+    fill(0);
+    textSize(22);
+    text("Length: "+snakeLength, width-120, 35);
+    
+    //The bonus
+    fill(255,0,0);
+    rect(bx, by, 20, 20);
+    
+    //The Snake stuff
+    fill(255);
+    rect(frontX, frontY, 20, 20);
+    body.add(new SnakeBody(frontX, frontY));
+    changeDirection();
+    checkLength();
+    checkDead();
+    bonusStuff();
+  }
+  else {
+    play.update();
+    if (play.clicked()) {
+      playing=true;
+      background(0);
+    }
+  }
+}
+
+void keyPressed() {
+  if ((keyCode == RIGHT || key == 'd') && !(direction == "Left")) {
+    direction = "Right";
+  }
+  if ((keyCode == LEFT || key == 'a') && !(direction == "Right")) {
+    direction = "Left";
+  }
+  if ((keyCode == UP || key == 'w') && !(direction == "Down")) {
+    direction = "Up";
+  }
+  if ((keyCode == DOWN || key == 's') && !(direction == "Up")) {
+    direction = "Down";
+  }
+}
+
+void gameOver() {
+  playing = false;
+  frontX = 20;
+  frontY = 60;
+  bx = int(random(1,49))*20;
+  by = int(random(3,38))*20;
+  snakeLength = 5;
+  direction = "Right";body = new ArrayList<SnakeBody>();
+  textAlign(CENTER);
+  textSize(35);
+  fill(255,0,0);
+  text("Game Over", width/2, height/2);
+}
+
+void bonusStuff() {
+  if (bx == frontX && by == frontY) {
+    snakeLength+=5;
+    bx = int(random(1,49))*20;
+    by = int(random(3,38))*20;
+  }
+}
+
+void checkDead() {
+  //Border
+  if (frontX < 0 || frontX >= width || frontY < 60 || frontY >= height) {
+    gameOver();
+  }
+  //Hits self
+  SnakeBody temp = new SnakeBody(frontX, frontY);
+  for(int i=0; i < body.size(); i++) {
+    SnakeBody x=body.get(i);
+    if (x.equals(temp)) {
+      gameOver();
+    }
+  }
+}
+  
+void checkLength() {
+  if (body.size() > snakeLength) {
+    SnakeBody temp=body.get(0);
+    body.remove(0);
+    fill(0);
+    rect(temp.getX(), temp.getY(), 20, 20);
+  }
+}
+
+void changeDirection() {
+  if (direction == "Right") {
+    frontX = frontX+20;
+  }
+  if (direction == "Left") {
+    frontX = frontX-20;
+  }
+  if (direction == "Up") {
+    frontY = frontY-20;
+  }
+  if (direction == "Down") {
+    frontY = frontY+20;
+  }
+}
+class Button {
+  int x, y, w, h;
+  String words;
+  int[] buttonColor;
+  int[] textColor;
+  Button(int a, int b, int c, int d, String e, int[] firstColor, int[] secondColor) {
+    x = a;
+    y = b;
+    w = c;
+    h = d;
+    words = e;
+    buttonColor = firstColor;
+    textColor = secondColor;
+    
+    fill(buttonColor[0], buttonColor[1], buttonColor[2]);
+    rect(x, y, w, h);
+    fill(textColor[0], textColor[1], textColor[2]);
+    textAlign(CENTER);
+    textSize(20);
+    text(words, x+w/2, y+h/2+5);
+  }
+  
+  boolean clicked() {
+    if (mousePressed && inButton()) {
+      return true;
+    }
+    return false;
+  }
+  
+  void update() {
+    if (inButton()) {
+      fill(buttonColor[0]-10, buttonColor[1]-10, buttonColor[2]-10);
+      rect(x, y, w, h);
+      fill(textColor[0], textColor[1], textColor[2]);
+      textAlign(CENTER);
+      textSize(20);
+      text(words, x+w/2, y+h/2+5);
+    }
+    else {
+      fill(buttonColor[0], buttonColor[1], buttonColor[2]);
+      rect(x, y, w, h);
+      fill(textColor[0], textColor[1], textColor[2]);
+      textAlign(CENTER);
+      textSize(20);
+      text(words, x+w/2, y+h/2+5);
+    }
+  }
+  
+  boolean inButton() {
+    if (mouseX > x && mouseX < x+w && mouseY > y && mouseY < y+h) {
+      return true;
+    }
+    return false;
+  }
+}
+class SnakeBody {
+  int x;
+  int y;
+  
+  SnakeBody(int c, int u) {
+    x=c;
+    y=u;
+  }
+  
+  int getX() {
+    return x;
+  }
+  int getY() {
+    return y;
+  }
+  boolean equals(SnakeBody part) {
+    if (part.getX() == x && part.getY() == y) {
+      return true;
+    }
+    return false;
+  }
+}   
+		</script>
+		<canvas> </canvas>
+	</body>
+</html>
