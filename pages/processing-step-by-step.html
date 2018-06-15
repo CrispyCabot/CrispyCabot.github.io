@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="../nav.css" rel="stylesheet" type="text/css">
+		<link href="guides.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+		<title>Processing Step By Step</title>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Home</a></li>
+				<li><a href="#">Guides</a>
+					<ul>
+						<li><a href="../pages/creating-your-first-game.html">Making A Game</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Step By Steps</a>
+					<ul>
+						<li><a href="../pages/processing-step-by-step.html">Processing</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Games</a>
+					<ul>
+						<li><a href="../games/snake.html">Snake</a></li>
+						<li><a href="../games/galaga/galaga.html">Galaga</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Apps</a>
+					<ul>
+						<li><a href="https://play.google.com/store/apps/details?id=xyz.crispycabot.hold_the_touch" target="_blank">Hold The Touch</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<br/>
+		<br/>
+		<br/>
+		
+		<div class="sec1">
+		
+			<div class="group"><h1 style="color: red">NOT COMPLETE</h1></div>
+			<div class="group">
+				<h1>Downloading Processing</h1>
+				<p>Downloading Processing is fairly straight-forward, but is obviously needed in order to use it. Simply go to <a href="https://processing.org/download/" target="_blank">Processing.org</a> and download it for your OS</p>
+				<p>Once downloaded, simply extract the folder, and use processing.exe to open the application</p>
+				<image class="zoom" src="ProcessingSBS/download.PNG" alt="File Explorer Folder of Processing Content"></image>
+				<image class="zoom" src="ProcessingSBS/empty.PNG" alt="Empty Processing window"></image>
+			</div>
+			
+			<div class="group">
+				<h1>Creating Your Game</h1>
+				<p>This is why processing is a great tool in creating games with Java. You can jump right into programming your game.</p>
+				<p>First off, regardless of experience, open the reference <a href="https://processing.org/reference/" target="_blank">here</a></p>
+				<p>This reference basically lists everything you can put into this IDE</p>
+				<br/>
+				<p><strong>Now let's begin</strong></p>
+				<p>Everything made in processing follows the following setup:</p>
+				<image class="zoom" src="ProcessingSBS/beginning.PNG"></image>
+				<p>For this example, we will be making a simple pong game</p>
+			</div>
+			
+			<div class="group">
+				<h1>Pong</h1>
+				<p>To begin, we will be doing the common functions that are usually called in setup as follows:</p>
+				<image class="zoom" src="ProcessingSBS/setup.PNG"></image>
+				<p>Next, we need to create global variables for what will be tracked. This will include:</p>
+				<ul>
+					<li>Player's position</li>
+					<li>Bot's position</li>
+					<li>Ball's position</li>
+					<li>Ball's movement direction</li>
+				</ul>
+				<p>We must initialize these outside all functions. I am going to include it in the new function <code>initialValues()</code> because doing this makes it easier to play a game again without exiting it.</p>
+			</div>
+			
+		</div>
+	</body>
+</html>
