@@ -62,7 +62,7 @@
 			</div>
 			
 			<div class="group">
-				<h1>Pong</h1>
+				<h1>Pong - The Beginning</h1>
 				<p>To begin, we will be doing the common functions that are usually called in setup as follows:</p>
 				<image class="zoom" src="ProcessingSBS/setup.PNG"></image>
 				<p>Next, we need to create global variables for what will be tracked. This will include:</p>
@@ -73,6 +73,20 @@
 					<li>Ball's movement direction</li>
 				</ul>
 				<p>We must initialize these outside all functions. I am going to include it in the new function <code>initialValues()</code> because doing this makes it easier to play a game again without exiting it.</p>
+				<image class="zoom" src="ProcessingSBS/initialValues.PNG"></image>
+				<p>You may notice that PVectors are being used, rather than ints or floats. Don't overthink these, as they simply store two values (x, y) so, for example, ballPos coordinates will be (ballPos.x, ballPos.y). Through using vectors, later on, we can simply just add the acceleration of the ball to the position.</p>
+				<p>Secondly, I have used the keywords width and height. These simply store the value of width and height which was set in the <code>size()</code> function. It is good to use these where applicable so resizing the window will be easier.</p>
+			</div>
+			
+			<div class="group">
+				<h1>Pong - Game Mechanics</h1>
+				<p>Now that we have begun our game, we can go ahead and jump right in. So let's actually draw some stuff.</p>
+				<image class="zoom" src="ProcessingSBS/firstDraw.PNG"></image>
+				<image class="zoom" src="ProcessingSBS/firstDrawWin.PNG" style="width: 15%;"></image>
+				<p>This is fairly straightforward. First, set the background to black to overwrite anything previously showin in the window, then draw all the pieces to the game after setting the fill to green using <code>fill(red, green, blue)</code> and <code>rect(x, y, width, height)</code></p>
+				<p>Since botPos and playerPos are set to width/2, half of the height needs to be subtracted to center it on the screen, or else it would be below the center</p>
+				<br/>
+				<p>Now let's add some movement</p>
 			</div>
 			
 		</div>
