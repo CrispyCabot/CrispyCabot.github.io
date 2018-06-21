@@ -7,7 +7,9 @@ var right;
 var space;
 var ship;
 var r;
-var shots;
+var shotList = [];
+var obstacleList = [];
+var spaceCounter;
 
 function preload() {
   ship = loadImage("spaceship.png");
@@ -23,35 +25,89 @@ function draw() {
   background(0);
   
   shotStuff();
+  obstacleStuff();
   
   moveShip();
   imageMode(CENTER);
   translate(loc.x, loc.y)
-  rotate(r);
+  rotate(-radians(r));
   image(ship, 0, 0);
-  print(right);
+}
+
+function moveShip() {
+  if (left) {
+    if (r+5 >= 360) {
+      r = 0;
+    }
+    else {
+      r+=5;
+    }
+  }
+  if (right) {
+    if (r-5 <= 0) {
+      r = 360;
+    }
+    else {
+      r-=5;
+    }
+  }
+  if (up) {
+    loc.x+=4*cos(radians(r));
+    loc.y-=4*sin(radians(r));
+  }
+  if (down) {
+    loc.x-=4*cos(radians(r)); 
+    loc.y-=4*sin(radians(r));
+  }
+}
+
+function obstacleStuff() {
+  while (obstacleList.length < 4) {
+    var temp = new Obstacle();
+    append(obstacleList, temp);
+  }
+  for (var i=0; i<obstacleList.length;i++) {
+    obstacleList[i].update();
+    if (obstacleList[i].loc.x < 0 || obstacleList[i].loc.x > width || obstacleList[i].loc.y < 0 || obstacleList[i].loc.y > height) {
+      obstacleList.splice(i, 1);
+    }
+  }
 }
 
 function shotStuff() {
   if (space) {
-    var newShot = [loc.x, loc.y, 
-
-function moveShip() {
-  if (right) {
-    r+=.05;
+    if (spaceCounter <= 0) {
+      var acc = findAcc(r);
+      var locHolder = createVector(loc.x, loc.y);
+      append(shotList, [locHolder, acc]);
+      spaceCounter = 60;
+    }
+    else {
+      spaceCounter--;
+    }
   }
-  if (left) {
-    r-=.05;
+  else {
+    spaceCounter--;
   }
-  if (up) {
-    loc.x+=4*cos(r); 
-    loc.y+=4*sin(r);
-  }
-  if (down) {
-    loc.x-=4*cos(r); 
-    loc.y-=4*sin(r);
+  for (var i=0; i < shotList.length; i++) {
+    var tempLoc = shotList[i][0];
+    var tempAcc = shotList[i][1];
+    tempLoc.add(tempAcc);
+    stroke(255,255,0);
+    strokeWeight(2);
+    line(tempLoc.x, tempLoc.y, tempLoc.x+4*tempAcc.x, tempLoc.y+4*tempAcc.y);
+    noStroke();
+    if (tempLoc.x < 0 || tempLoc.x > width || tempLoc.y < 0 || tempLoc.y > height) {
+      shotList.splice(i, 1);
+    }
   }
 }
+
+function findAcc(r) {
+  var x = cos(radians(r));
+  var y = -sin(radians(r));
+  return createVector(8*x,8*y);
+}   
 
 function initV() { //Creates initial values
   right=false;
@@ -61,7 +117,9 @@ function initV() { //Creates initial values
   space=false;
   loc = createVector(width/2,height/2);
   r = 0.0;
-  shots = [];
+  spaceCounter = 0;
+  shotList = [];
+  obstacleList=[];
 }
     
 function keyPressed() {
