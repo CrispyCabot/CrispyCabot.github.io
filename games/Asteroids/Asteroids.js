@@ -14,6 +14,8 @@ var spaceCounter;
 var obstacleAmount;
 var time;
 var score;
+var shipWidth = 59;
+var shipHeight = 45;
 
 function preload() {
   ship = loadImage("spaceship.png");
@@ -37,9 +39,14 @@ function draw() {
   translate(loc.x, loc.y)
   rotate(-radians(r));
   image(ship, 0, 0);
+  noFill()
+  stroke(100,100,0);
+  strokeWeight(3);
+  rect(0-shipWidth/2,0-shipHeight/2,shipWidth, shipHeight);
+  noStroke();
 }
 
-function moveShip() {
+function moveShip() { //Moves the ship
   if (left) {
     if (r+5 >= 360) {
       r = 0;
@@ -68,7 +75,7 @@ function moveShip() {
       acc.y+=.1*sin(radians(r));
     }
   }
-  if (loc.x < 0) {
+  if (loc.x < 0) { //Looping of the ship throughout the screen
     loc.x = width;
   }
   if (loc.x > width) {
@@ -81,17 +88,19 @@ function moveShip() {
     loc.y = height;
   }
   loc.add(acc);
+  
+  //Constant decrease of acc
   if (acc.x > 0) {
-    acc.x -= 0.01;
+    acc.x -= 0.03;
   }
   if (acc.y > 0) {
-    acc.y -= 0.01;
+    acc.y -= 0.03;
   }
   if (acc.x < 0) {
-    acc.x += 0.01;
+    acc.x += 0.03;
   }
   if (acc.y < 0) {
-    acc.y += 0.01;
+    acc.y += 0.03;
   }
 }
 
@@ -132,7 +141,7 @@ function obstacleStuff() {
   for (var i=0; i<obstacleList.length;i++) {
     
     var obstacle = obstacleList[i];
-    if (abs(obstacle.loc.x-loc.x) < 20 && abs(obstacle.loc.y - loc.y) < 20) { //Checks if obstacle hit ship *Only checks in a square from the midpoint 20 pixels horizontal and vertical*
+    if (collision(obstacle)) {
       noLoop();
       textAlign(CENTER).textSize(50).fill(255,0,0);
       text("Game Over", width/2, height/2);
@@ -140,24 +149,22 @@ function obstacleStuff() {
     
     var dead = false;
     
-    //Checks if obstacle went off screen
-   /* if (obstacleList[i].loc.x < 0 || obstacleList[i].loc.x > width || obstacleList[i].loc.y < 0 || obstacleList[i].loc.y > height) { //Checks if obstacle went off screen
-      dead = true;
-    }*/
-    if (obstacle.loc.x < 0) {
-      obstacle.loc.x = width;
+    //Checks if obstacle went off screen - if it did it moves the obstacle to make it continous
+    if (obstacle.loc.x+obstacle.radius < 0) {
+      obstacle.loc.x = width+obstacle.radius;
     }
-    if (obstacle.loc.x > width) {
-      obstacle.loc.x = 0;
+    if (obstacle.loc.x-obstacle.radius > width) {
+      obstacle.loc.x = 0-obstacle.radius;
     }
-    if (obstacle.loc.y < 0) {
-      obstacle.loc.y = height;
+    if (obstacle.loc.y+obstacle.radius < 0) {
+      obstacle.loc.y = height+obstacle.radius;
     }
-    if (obstacle.loc.y > height) {
-      obstacle.loc.y = 0;
+    if (obstacle.loc.y-obstacle.radius > height) {
+      obstacle.loc.y = 0-obstacle.radius;
     }
     
-    if (obstacleList[i].update() == 0) { //Returns 0 if obstacle was hit by shot
+    //Updates obstacles, returning 0 if they were shot
+    if (obstacleList[i].update() == 0) {
       dead = true;
     }
     if (dead) {
@@ -167,6 +174,13 @@ function obstacleStuff() {
   time = millis() / 1000
 }
 
+//COLLISION DETECTOR: OBSTACLE - SHIP
+function collision(obstacle) {
+  if (abs(obstacle.loc.x-loc.x) < 20 && abs(obstacle.loc.y - loc.y) < 20) { //Checks if obstacle hit ship *Only checks in a square from the midpoint 20 pixels horizontal and vertical* {
+    return true;
+  }
+}
+
 function findAcc(r) {
   var x = cos(radians(r));
   var y = -sin(radians(r));
@@ -174,7 +188,7 @@ function findAcc(r) {
 }
 
 function displayStuff() {
-  textAlign(LEFT, TOP).textSize(40).fill(255,255,0);
+  textAlign(LEFT, TOP).textSize(32).fill(255,255,0);
   text("Score: "+score, 15, 15);
 }
 
