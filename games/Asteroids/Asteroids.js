@@ -16,6 +16,7 @@ var time;
 var score;
 var shipWidth = 59;
 var shipHeight = 45;
+var shipDiagonal = 74; //Approximate diagonal
 
 function preload() {
   ship = loadImage("spaceship.png");
@@ -39,10 +40,6 @@ function draw() {
   translate(loc.x, loc.y)
   rotate(-radians(r));
   image(ship, 0, 0);
-  noFill()
-  stroke(100,100,0);
-  strokeWeight(3);
-  rect(0-shipWidth/2,0-shipHeight/2,shipWidth, shipHeight);
   noStroke();
 }
 
@@ -134,14 +131,14 @@ function shotStuff() {
 }
 
 function obstacleStuff() {
-  while (obstacleList.length < 5) {
+  while (obstacleList.length < millis()/2000) {
     var temp = new Obstacle();
     append(obstacleList, temp);
   }
   for (var i=0; i<obstacleList.length;i++) {
     
     var obstacle = obstacleList[i];
-    if (collision(obstacle)) {
+    if (collision(obstacle)) { //Checks if obstacle hit ship
       noLoop();
       textAlign(CENTER).textSize(50).fill(255,0,0);
       text("Game Over", width/2, height/2);
@@ -176,17 +173,28 @@ function obstacleStuff() {
 
 //COLLISION DETECTOR: OBSTACLE - SHIP
 function collision(obstacle) {
-  if (abs(obstacle.loc.x-loc.x) < 20 && abs(obstacle.loc.y - loc.y) < 20) { //Checks if obstacle hit ship *Only checks in a square from the midpoint 20 pixels horizontal and vertical* {
+  var distance = dist(loc.x, loc.y, obstacle.loc.x, obstacle.loc.y);
+  if (obstacle.radius == 40 && distance < 40) {
     return true;
   }
+  if (obstacle.radius == 20 && distance < 20) {
+    return true;
+  }
+  if (obstacle.radius == 80 && distance < 50) {
+    return true;
+  }
+  //ellipse(loc.x, loc.y, 50, 50);
+  return false;
 }
 
+//Gets the acc for an obstacle
 function findAcc(r) {
   var x = cos(radians(r));
   var y = -sin(radians(r));
   return createVector(8*x,8*y);
 }
 
+//Decorative stuff like the score n stuff
 function displayStuff() {
   textAlign(LEFT, TOP).textSize(32).fill(255,255,0);
   text("Score: "+score, 15, 15);
