@@ -14,18 +14,32 @@ var spaceCounter;
 var obstacleAmount;
 var time;
 var score;
+
+//Data things
 var shipWidth = 59;
 var shipHeight = 45;
-var shipDiagonal = 74; //Approximate diagonal
+var arcadeFont;
+var actionTheme;
+var shotSound;
+var obstacleBoom;
+var selfBoom;
+var deathGif;
 
 function preload() {
   ship = loadImage("spaceship.png");
+  arcadeFont = loadFont("data/ARCADE.TTF");
+  actionTheme = loadSound("data/action.wav");
+  shotSound = loadSound("data/shot.mp3");
+  obstacleBoom = loadSound("data/ObstacleDestroy.mp3");
+  selfBoom = loadSound("data/SelfDestroy.mp3");
 }
 
 function setup() {
   frameRate(144);
-  createCanvas(1200,600);
+  createCanvas(1400,800);
   initV();
+  actionTheme.loop(0, 1, 1);
+  textFont(arcadeFont);
 }
 
 function draw() {
@@ -101,12 +115,14 @@ function moveShip() { //Moves the ship
   }
 }
 
-function shotStuff() {
+//Shot stuff
+function shotStuff() { 
   if (space) {
     if (spaceCounter <= 0) {
       var acc = findAcc(r);
       var locHolder = createVector(loc.x, loc.y);
       append(shotList, [locHolder, acc]);
+      shotSound.play();
       spaceCounter = 20;
     }
     else {
@@ -130,6 +146,7 @@ function shotStuff() {
   }
 }
 
+//Obstacle stuff
 function obstacleStuff() {
   while (obstacleList.length < millis()/2000) {
     var temp = new Obstacle();
@@ -140,6 +157,7 @@ function obstacleStuff() {
     var obstacle = obstacleList[i];
     if (collision(obstacle)) { //Checks if obstacle hit ship
       noLoop();
+      selfBoom.play();
       textAlign(CENTER).textSize(50).fill(255,0,0);
       text("Game Over", width/2, height/2);
     }
@@ -166,6 +184,7 @@ function obstacleStuff() {
     }
     if (dead) {
       obstacleList.splice(i, 1);
+      obstacleBoom.play();
     }
   }
   time = millis() / 1000
@@ -252,3 +271,21 @@ function keyReleased() {
     space=false;
   }
 }
+
+/* I don't know what this does but it disables arrow keys/spacebar from scrolling */
+var keys = {};
+window.addEventListener("keydown",
+    function(e){
+        keys[e.keyCode] = true;
+        switch(e.keyCode){
+            case 37: case 39: case 38:  case 40: // Arrow keys
+            case 32: e.preventDefault(); break; // Space
+            default: break; // do not block other keys
+        }
+    },
+false);
+window.addEventListener('keyup',
+    function(e){
+        keys[e.keyCode] = false;
+    },
+false);
