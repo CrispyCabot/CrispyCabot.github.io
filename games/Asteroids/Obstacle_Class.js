@@ -33,6 +33,7 @@ function Obstacle() {
   this.update = function() {
     this.loc.add(this.acc);
     fill(255);
+    noStroke();
     ellipse(this.loc.x, this.loc.y, this.radius, this.radius);
     for (var m=0; m< shotList.length; m++) {
       var temp = shotList[m][0];
