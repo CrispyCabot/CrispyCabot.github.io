@@ -1,3 +1,6 @@
 canvas {
 	margin: 12px;
 }
+#scoreboard {
+	display: none;
+}

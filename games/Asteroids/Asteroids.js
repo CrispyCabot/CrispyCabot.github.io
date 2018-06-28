@@ -20,6 +20,8 @@ var shipDestroy;
 var destroyTimer;
 var playing;
 var endScreen;
+var playAgain;
+var oldTime = 0;
 
 //Data things
 var shipWidth = 59;
@@ -56,6 +58,7 @@ function preload() {
 
 //Creates initial values
 function initV() {
+  noCursor();
   right=false;
   left=false;
   up=false;
@@ -81,17 +84,22 @@ function initV() {
   append(shipFrags, [frag4, createVector(random(-2,2), random(-2,2))]);
   playing=true;
   endScreen=false;
+  var col1 = [255, 89, 89];
+  var col2 = [0, 0, 0];
+  playAgain = new Button(width/2-400, 300, 800, 200, "Play Again", col1, col2, 64);
+  oldTime=time;
 }
 
 function setup() {
   frameRate(144);
   createCanvas(1400,750);
   initV();
-  actionTheme.loop(0, 1, 0.2, 1); //Background song
+  actionTheme.loop(0, 1, 0.4, 1); //Background song
   textFont(arcadeFont);
 }
 
 function draw() {
+  time = millis() / 2000;
   if (playing) {
     playingScreen();
   }
@@ -101,7 +109,11 @@ function draw() {
     text("Game Over", width/2, 20);
     
     displayStuff();
-    showScoreboard();
+    playAgain.update();
+    if (playAgain.clicked()) {
+      initV();
+    }
+    //showScoreboard();
   }
 }
 
@@ -145,6 +157,7 @@ function showScoreboard() {
   text(split(scoreboardStrings[4], " ")[1], nameX, r5);
 }
 
+//Playing Screen
 function playingScreen() {
   background(0);
   
@@ -153,10 +166,15 @@ function playingScreen() {
   displayStuff();
   
   if (shipDestroy) {
+    imageMode(CENTER);
     for (var i=0; i<shipFrags.length; i++) {
       var temp = shipFrags[i];
       var locc = fragLocs[i];
-      image(temp[0], locc.x, locc.y);
+      translate(locc.x, locc.y);
+      rotate(-radians(r));
+      image(temp[0], 0, 0);
+      rotate(radians(r));
+      translate(-locc.x, -locc.y);
       fragLocs[i].add(temp[1]);
     }
     destroyTimer++;
@@ -171,6 +189,7 @@ function playingScreen() {
   
   moveShip();
   imageMode(CENTER);
+  push();
   translate(loc.x, loc.y)
   rotate(-radians(r));
   if (up) {
@@ -188,6 +207,7 @@ function playingScreen() {
   else {
     image(ship, 0, 0);
   }
+  pop();
   noStroke();
 }
 
@@ -290,7 +310,7 @@ function shotStuff() {
 
 //Obstacle stuff
 function obstacleStuff() {
-  while (obstacleList.length < millis()/2000) {
+  while (obstacleList.length < time - oldTime) {
     var temp = new Obstacle();
     append(obstacleList, temp);
   }
@@ -326,23 +346,32 @@ function obstacleStuff() {
       obstacleBoom.play(0, 1, 0.3);
     }
   }
-  time = millis() / 1000
 }
 
 //Function called when ship dies
 function shipDied() {
-  updateScoreboard();
+  cursor(ARROW);
+ // updateScoreboard();
   if (rocketSound.isPlaying()) {
     rocketSound.stop();
   }
   shipDestroy = true;
   selfBoom.play(0, 1, 0.6);
-  for (var i=0; i<4; i++) {
+  for (var i=0; i<4; i++) { //Sets the loc and acc of the ship fragments
     append(fragLocs, createVector(loc.x, loc.y));
     var temp = shipFrags[i][1];
-    temp.x = acc.x*random(.2, 1.5);
-    temp.y = acc.y*random(.2, 1.5);
-    print("New Line");
+    if (acc.x == 0) {
+      temp.x = random(-2,2);
+    }
+    else {
+      temp.x = acc.x*random(.6,1.2);
+    }
+    if (acc.y == 0) {
+      temp.y = random(-2,2);
+    }
+    else {
+      temp.y = acc.y*random(.6,1.2);
+    }
   }
 }
 
@@ -375,12 +404,25 @@ function updateScoreboard() {
     scoreboardStrings.splice(place, 0, str(score)+" "+pname);
     scoreboardStrings.splice(scoreboardStrings.length-1, 1);
     print(scoreboardStrings);
-    saveStrings(scoreboardStrings, "data/scoreboard.txt");
+   // saveStrings(scoreboardStrings, "data/scoreboard.txt");
   }
 }
 
 //COLLISION DETECTOR: OBSTACLE - SHIP
 function collision(obstacle) {
+  /* var dx = obstacle.x - loc.x;
+  var dy = obstacle.y - loc.y;
+  var nx = dx*cos(-radians(r)) - dy * sin(-radians(r));
+  var ny = dy*cos(-radians(r)) + dx * sin(-radians(r));
+  var inside = (abs(nx) < shipWidth/2) && (abs(ny) < shipHeight/2);
+  if (inside) {
+    fill(255, 0, 0);
+  } else {
+    fill(0, 255, 0);
+  }
+  noStroke();
+  ellipse(obstacle.loc.x, obstacle.loc.y, 50, 50); */
+ 
   var distance = dist(loc.x, loc.y, obstacle.loc.x, obstacle.loc.y);
   if (obstacle.radius == 40 && distance < 40) {
     return true;
