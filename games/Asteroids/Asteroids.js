@@ -94,7 +94,7 @@ function setup() {
   frameRate(144);
   createCanvas(1400,750);
   initV();
-  actionTheme.loop(0, 1, 0.4, 1); //Background song
+  actionTheme.loop(0, 1, 0.6, 1); //Background song
   textFont(arcadeFont);
 }
 
@@ -112,6 +112,7 @@ function draw() {
     playAgain.update();
     if (playAgain.clicked()) {
       initV();
+      actionTheme.loop(0, 1, 0.6, 1);
     }
     //showScoreboard();
   }
@@ -280,7 +281,7 @@ function moveShip() { //Moves the ship
 //Shot stuff
 function shotStuff() { 
   if (space) {
-    if (spaceCounter <= 0) { //This is where a shot is created
+    if (spaceCounter <= 0 && !shipDestroy) { //This is where a shot is created
       var acc = findAcc(r);
       var locHolder = createVector(loc.x, loc.y);
       append(shotList, [locHolder, acc]);
