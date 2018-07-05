@@ -52,3 +52,14 @@ nav ul li ul li {
 	width: 120px;
 	padding: 4px;
 }
+::selection {
+	background: #E4E4E4;
+}
+footer {
+	background-color: #FF7373;
+	padding: 16px;
+	position: sticky;
+	bottom: 0;
+	margin-top: 400px;
+	width: 100%;
+}

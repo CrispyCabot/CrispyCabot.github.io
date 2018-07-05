@@ -1,17 +1,13 @@
 var loc;
 var acc
 var right;
-var left;
-var up;
-var down;
-var right;
-var space;
+var left, up, down, right, space;
 var r;
 var shotList = [];
 var obstacleList = [];
 var spaceCounter;
 var obstacleAmount;
-var time;
+var time = 0;
 var score;
 var trailCounter;
 var shipFrags = [];
@@ -71,7 +67,6 @@ function initV() {
   shotList = [];
   obstacleList=[];
   obstacleAmount = 5;
-  time=0;
   score=0;
   trailCounter=0;
   shipDestroy = false;
@@ -112,6 +107,7 @@ function draw() {
     playAgain.update();
     if (playAgain.clicked()) {
       initV();
+      oldTime = millis() / 2000;
       actionTheme.loop(0, 1, 0.6, 1);
     }
     //showScoreboard();

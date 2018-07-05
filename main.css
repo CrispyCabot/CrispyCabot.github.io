@@ -10,7 +10,11 @@ iframe {
 
 .sec1 h1 {
 	padding: 4px;
-	color: #EE0;
+	color: #F66;
+}
+
+.sec1 h1:hover {
+	color: #66F;
 }
 
 .sec1 iframe {
