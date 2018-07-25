@@ -89,7 +89,7 @@ function setup() {
   frameRate(144);
   createCanvas(1400,750);
   initV();
-  actionTheme.loop(0, 1, 0.6, 1); //Background song
+  actionTheme.loop(0, 1, 0.4, 1); //Background song
   textFont(arcadeFont);
 }
 
@@ -108,7 +108,7 @@ function draw() {
     if (playAgain.clicked()) {
       initV();
       oldTime = millis() / 2000;
-      actionTheme.loop(0, 1, 0.6, 1);
+      actionTheme.loop(0, 1, 0.3, 1);
     }
     //showScoreboard();
   }
@@ -231,7 +231,7 @@ function moveShip() { //Moves the ship
       acc.y-=.1*sin(radians(r));
     }
     if (!(rocketSound.isPlaying())) {
-      rocketSound.loop(0, 1, 0.5, 1);
+      rocketSound.loop(0, 1, 0.3, 1);
     }
   }
   else {
@@ -281,7 +281,7 @@ function shotStuff() {
       var acc = findAcc(r);
       var locHolder = createVector(loc.x, loc.y);
       append(shotList, [locHolder, acc]);
-      shotSound.play(0, 1, 0.3);
+      shotSound.play(0, 1, 0.2);
       spaceCounter = 20;
     }
     else {
@@ -353,7 +353,7 @@ function shipDied() {
     rocketSound.stop();
   }
   shipDestroy = true;
-  selfBoom.play(0, 1, 0.6);
+  selfBoom.play(0, 1, 0.4);
   for (var i=0; i<4; i++) { //Sets the loc and acc of the ship fragments
     append(fragLocs, createVector(loc.x, loc.y));
     var temp = shipFrags[i][1];

@@ -5,6 +5,21 @@
   <link href="../../nav.css" rel="stylesheet" type="text/css">
   <link href="asteroids.css" rel="stylesheet" type="text/css">
 
+	
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyDi8SakJypCqosEOijf1qqcXolRHMfR5ME",
+			authDomain: "website-test-ec8a6.firebaseapp.com",
+			databaseURL: "https://website-test-ec8a6.firebaseio.com",
+			projectId: "website-test-ec8a6",
+			storageBucket: "website-test-ec8a6.appspot.com",
+			messagingSenderId: "1079697004395"
+		};
+		firebase.initializeApp(config);
+	</script>
+	
   <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
   <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
   <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
@@ -15,6 +30,7 @@
   <script language="javascript" type="text/javascript" src="Asteroids.js"></script>
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
   
+	<script defer src="/  /firebase/4.12.1/firebase-firestore.js"></script>
 
   <!-- This line removes any default padding and style. 
        You might only need one of these values set. -->
@@ -52,6 +68,5 @@
 		<br/>
 		<br/>
 		<br/>
-		<p id="scoreboard">0 Empty|0 Empty|0 Empty|0 Empty|0 Empty</p>
 </body>
 </html>

@@ -88,8 +88,18 @@
 				<p>Since botPos and playerPos are set to width/2, half of the height needs to be subtracted to center it on the screen, or else it would be below the center</p>
 				<br/>
 				<p>Now let's add some movement</p>
-			</div>
-			
+				<p>We'll start by just having the ball move, and stay on the screen.</p>
+				<image class="zoom" src="ProcessingSBS/ballMove.png"></image>
+				<p>Changes Here:
+					<ul>
+					<li>Added <code>moveBall()</code> to the <code>draw()</code> function</li>
+					<li>Changed ballAcc in <code>initialValues()</code> to initialize with the value (3,3)</li>
+					<li>Created the <code>moveBall()</code> function</li>
+					<ul><li>Note 20 is added to check if the ball is over the height. This is because the rectangle is drawn from the top left, so the height of the ball needs to be added in order to find the bottom part of the ball.</li></ul>
+					</ul>
+				</p>
+				<p>This only checks if the ball hits the top or bottom. Now to check if the ball hits either pong stick</p>
+			</div>		
 		</div>
 	</body>
 </html>
