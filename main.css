@@ -1,4 +1,4 @@
-.sec1 {
+.sec2 {
 	margin: 12px;
 	background-color: #fff;
 }
@@ -8,15 +8,15 @@ iframe {
 	width: 1000px;
 }
 
-.sec1 h1 {
+.sec2 h1 {
 	padding: 4px;
 	color: #F66;
 }
 
-.sec1 h1:hover {
+.sec2 h1:hover {
 	color: #66F;
 }
 
-.sec1 iframe {
+.sec2 iframe {
 	padding: 4px;
 }
