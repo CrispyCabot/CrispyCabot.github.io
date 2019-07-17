@@ -31,13 +31,13 @@ pre {
 	border: 5px solid #888;
 }
 
-.sec1 p, .sec1 ul {
+.sec1 p, .sec1 ol {
 	font-size: 16px;
 	font-family: "Slabo 27px", serif;
 	color: #555;
 }
 
-.sec1 p:hover, .sec1 ul:hover {
+.sec1 p:hover, .sec1 ol:hover {
 	color: #000;
 }
 
@@ -56,7 +56,12 @@ pre {
 	padding: 12px;
 }
 
+
 .sec1 ul {
+	padding: 12px 44px;
+}
+
+.sec1 ol {
 	padding: 12px 44px;
 }
 

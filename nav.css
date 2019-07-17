@@ -49,7 +49,7 @@ nav ul li:hover ul{
 	display: block
 }
 nav ul li ul li {
-	width: 120px;
+	width: 150px;
 	padding: 4px;
 }
 ::selection {
