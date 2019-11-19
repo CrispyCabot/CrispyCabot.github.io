@@ -1,0 +1,22 @@
+.sec2 {
+	margin: 12px;
+	background-color: #fff;
+}
+
+iframe {
+	height: 500px;
+	width: 1000px;
+}
+
+.sec2 h1 {
+	padding: 4px;
+	color: #F66;
+}
+
+.sec2 h1:hover {
+	color: #66F;
+}
+
+.sec2 iframe {
+	padding: 4px;
+}
