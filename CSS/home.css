@@ -1,0 +1,39 @@
+html {
+    background-color: var(--mainColor);
+}
+
+.content {
+    color: var(--secondColor);
+    font-family: var(--codeFont);
+    text-align: center;
+    width: 50%;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+}
+
+.content a {
+    text-decoration: none;
+    padding: 10px;
+    color: var(--fourthColor);
+    border: 2px solid white;
+    border-radius: 50px;
+    position: relative;
+    top: 50px;
+    width: 160px;
+    transition-property: padding;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+}
+
+.content h1:hover {
+    cursor: default;
+}
+
+.content a:hover {
+    padding: 30px 50px;
+    color: var(--fifthColor);
+    transition-property: padding;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+}
