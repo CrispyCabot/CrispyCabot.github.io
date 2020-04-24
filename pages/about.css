@@ -1,0 +1,43 @@
+body {
+    background-color: var(--blackCol);
+}
+
+h1 {
+    font-family: var(--codeFont);
+    color: var(--redCol);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container {
+    background-color: var(--blackCol);
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--grayishCol);
+}
+
+.card img {
+    width: 100%;
+}
+
+.card-body {
+    text-align: center;
+    color: var(--orangeCol);
+    padding: 16px;
+}
+
+@media (min-width: 768px) {
+    .card {
+        margin-top: 40px;
+        transition: .5s;
+    }
+
+    .card:hover {
+        box-shadow: 10px 10px 10px var(--redCol);
+        border-left: 1px solid var(--redCol);
+        border-top: 1px solid var(--redCol);
+    }
+}

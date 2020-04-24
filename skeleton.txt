@@ -1,0 +1,7 @@
+pages:
+    Home
+    About Me
+        Education
+        Hobbies
+    Personal Projects
+    Contact

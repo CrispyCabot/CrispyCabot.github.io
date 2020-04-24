@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Chris Bridewell</title>
-        <meta charset='utf-8'>
-        <meta name="description" content="The website of Chris Bridewell">
-        <meta name="keywords" content="Chris, Bridewell, Developer">
-        <meta name="author" content="Chris Bridewell">
+	<head>
+    <title>Chris Bridewell</title>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="keywords" content="portfolio, chris, bridewell, home">
+    <meta name="author" content="Chris Bridewell">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Lora|Roboto+Mono&display=swap" rel="stylesheet"> 
+		
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <!--Google Font-->
-        <link href="https://fonts.googleapis.com/css?family=Lora|Roboto+Mono&display=swap" rel="stylesheet"> 
+    <!--My CSS-->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/nav.css">
+  </head>
 
-        <!--CSS Stylesheets-->
-        <link rel="stylesheet" href="CSS/variables.css">
-        <link rel="stylesheet" href="CSS/nav.css">
-        <link rel="stylesheet" href="CSS/home.css">
+  <body>
 
-        <!--Javascript-->
-        <script type="text/javascript" src="nav.js"></script>
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <ul><li><a href="index.html">Home</a></li></ul>
-                <ul>
-                    <li><a id="test" href="#" onclick = "showStuff('test')">About Me</a>
-                        <ul>
-                            <li><a href="pages/aboutme.html#education">Education</a></li>
-                            <li><a href="pages/aboutme.html#hobbies">Hobbies</a></li>
-                            <li><a href="">Something Else</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li><a href="">Projects</a>
-                        <ul>
-                            <li><a href="">Zombie Survival Game</a></li>
-                            <li><a href="">Flapp-O</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li><a href="">Contact</a>
-                        <ul>
-                            <li><a href="">LinkedIn</a></li>
-                            <li><a href="">Email</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </ul>
-        </nav>
-        <div class="content">
-            <h1>I am Chris Bridewell, 
-                a Computer Science Major at Northern Kentucky University.
-            </h1>
-            <a href="pages/aboutme.html">Learn More</a>
-        </div>
-    </body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <a class="navbar-brand" href="/index.html">
+        <img src="/images/navbarPic.jpg" width="45" height="45" alt="red logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" id="activeNav" href="/index.html">Home</a> <!--Deleted this idk what it does: <span class="sr-only">(current)</span>-->
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              About Me
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/pages/education.html">Education</a>
+              <a class="dropdown-item" href="/pages/hobbies.html">Hobbies</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/projects.html">Personal Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/contact.html">Contact Me</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          <a href="/Resume.docx">Download My Resume</a>
+        </span>
+      </div>
+    </nav>
+
+    <div class="content">
+      <h1>I am Chris Bridewell, 
+          a Computer Science Major at Northern Kentucky University.
+      </h1>
+      <a href="/pages/education.html">Learn More</a>
+  </div>
+
+    <!--Bootstrap scripts-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+  </body>
 </html>

@@ -1,21 +1,26 @@
 html {
-    background-color: var(--mainColor);
+    background-color: var(--blackCol);
 }
 
 .content {
-    color: var(--secondColor);
+    color: var(--redCol);
     font-family: var(--codeFont);
     text-align: center;
     width: 50%;
     position: absolute;
     top: 30%;
     left: 25%;
+    z-index: -1;
+}
+
+.content h1 {
+    font-size: 6vw;
 }
 
 .content a {
     text-decoration: none;
     padding: 10px;
-    color: var(--fourthColor);
+    color: var(--redCol);
     border: 2px solid white;
     border-radius: 50px;
     position: relative;
@@ -32,8 +37,14 @@ html {
 
 .content a:hover {
     padding: 30px 50px;
-    color: var(--fifthColor);
+    color: var(--greenCol);
     transition-property: padding;
     transition-duration: 1s;
     transition-timing-function: ease;
+}
+
+@media (min-width: 768px) {
+    .content h1 {
+        font-size: 2em;
+    }
 }
