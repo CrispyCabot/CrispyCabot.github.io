@@ -1,0 +1,58 @@
+body {
+    background-color: var(--blackCol);
+}
+
+h1 {
+    font-family: var(--codeFont);
+    color: var(--redCol);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.carousel {
+    width: 90%;
+    margin: 10% auto;
+}
+
+.carousel-caption {
+    background-color: var(--darkRed);
+    padding: 5px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+h5 a { /*The big caption thingy for the carousel */
+    color: var(--orangeCol);
+    text-decoration: underline;
+}
+
+.card-body a {
+    color: var(--orangeCol);
+    text-decoration: underline;
+}
+
+.carousel-caption p {
+    color: var(--orangeCol);
+    padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        width: 60%;
+        margin: 3% auto;
+    }
+
+    .carousel-caption {
+        border-radius: 15px;
+    }
+
+    .carousel:hover {
+        box-shadow: 10px 10px 10px var(--redCol);
+        border-left: 1px solid var(--redCol);
+        border-top: 1px solid var(--redCol);
+    }
+
+    .carousel {
+        transition: .5s;
+    }
+}

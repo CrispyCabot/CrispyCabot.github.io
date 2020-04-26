@@ -16,7 +16,8 @@ h1 {
 .card {
     width: 100%;
     margin-bottom: 20px;
-    background-color: var(--grayishCol);
+    background-color: var(--darkRed);
+    font-family: var(--otherFont);
 }
 
 .card img {
