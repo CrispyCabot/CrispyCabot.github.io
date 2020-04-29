@@ -1,0 +1,71 @@
+h6 {
+    color: var(--orangeCol);
+    text-align: center;
+    font-family: var(--otherFont);
+}
+
+.card-body a {
+    display: inline-block;
+    color: var(--greenCol);
+    padding: 10px;
+}
+
+.card-body a:hover {
+    border-left: 2px solid var(--orangeCol);
+}
+
+/*Below is very similar to about.css*/
+body {
+    background-color: var(--blackCol);
+}
+
+h1 {
+    font-family: var(--codeFont);
+    color: var(--redCol);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container {
+    background-color: var(--blackCol);
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--darkRed);
+    font-family: var(--otherFont);
+}
+
+.card-body {
+    text-align: center;
+    color: var(--orangeCol);
+    padding: 16px;
+}
+
+.code {
+    font-family: var(--codeFont);
+    font-size: 14px;
+    background-color: var(--grayCol);
+    padding: 8px 8px;
+    border-radius: 6px;
+    margin: 10px;
+}
+
+@media (min-width: 768px) {
+    .card {
+        margin-top: 40px;
+        transition: .5s;
+    }
+
+    .card-body a {
+        padding:  initial;
+        padding-left: 5px;
+    }
+
+    .card:hover {
+        box-shadow: 10px 10px 10px var(--redCol);
+        border-left: 1px solid var(--redCol);
+        border-top: 1px solid var(--redCol);
+    }
+}

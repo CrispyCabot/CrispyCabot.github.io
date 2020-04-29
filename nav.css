@@ -4,6 +4,7 @@
     --redCol: #F45531; /* 244, 85, 49 rgb */
     --greenCol: #39ff14;
     --orangeCol: rgb(255, 166, 0);
+    --grayCol: rgb(88, 86, 86);
 
     --codeFont: 'Roboto Mono', monospace;
     --otherFont: 'Nunito Sans', sans-serif;
