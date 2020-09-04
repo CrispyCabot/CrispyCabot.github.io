@@ -10,19 +10,19 @@
     --otherFont: 'Nunito Sans', sans-serif;
 }
 
-body {
-    background-color: var(--blackCol);
-}
-
 h1 {
     font-family: var(--codeFont);
     color: var(--redCol);
-    text-align: center;
     margin-top: 30px;
+    background-color: var(--darkRed);
+    display: inline-block;
+    text-align: right;
+    padding: 4px;
+    border-radius: 4px;
 }
 
-.container {
-    background-color: var(--blackCol);
+#title {
+    text-align: center;
 }
 
 .card {
