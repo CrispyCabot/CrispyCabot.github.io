@@ -2,6 +2,10 @@ html {
     background-color: var(--blackCol);
 }
 
+.navbar-custom, .navbar-custom .dropdown-menu {
+    background-color: rgba(0, 0, 0, 1);
+}
+
 .content {
     color: var(--redCol);
     font-family: var(--codeFont);
